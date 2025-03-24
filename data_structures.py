@@ -46,10 +46,14 @@ class ObservationHeaderInfo(NamedTuple):
     region_id: int
     start_time: str
     end_time: str
+    off_axis_offset: str
+    azimuth: str
+    right_ascension: str
+    declination: str
 
 
 class ObservationData(NamedTuple):
-    """Holds data derrived from the observation event list."""
+    """Holds data derived from the observation event list."""
 
     average_count_rate: float
     total_counts: int

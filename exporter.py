@@ -15,7 +15,7 @@ class Exporter:
         self.source_count = source_count
         self.output_directory = (
             Path(config["Output Directory"])
-            / f"{config['Object Name']}-{datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}"
+            / f"{config['Object Name']}-{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
         )
         self.output_directory.mkdir(parents=True, exist_ok=True)
         self.master_data = {}
@@ -94,13 +94,14 @@ class Exporter:
             output := self.output_directory / "index.html", mode="a", encoding="utf-8"
         ) as file:
             environment = Environment(loader=FileSystemLoader("./"))
-            template = environment.get_template(str("/output_template.jinja"))
+            template = environment.get_template(("Lightcurves/output_template.jinja"))
             content = template.render(
                 source_count=self.source_count,
                 object_name=self.config["Object Name"],
                 search_radius=self.config["Search Radius (arcmin)"],
                 significance_threshold=self.config["Significance Threshold"],
                 counts_threshold=self.config["Minimum Counts"],
+                zoom=min(1, self.config["Binsize"]/500),
                 master_data=self.master_data,
             )
             file.write(content)

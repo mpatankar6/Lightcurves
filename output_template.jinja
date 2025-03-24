@@ -11,6 +11,7 @@
       flex-direction: column;
       align-items: center;
       font-size: calc(10px + 2vmin);
+      zoom: {{ zoom }}; 
     }
 
     table,
@@ -162,13 +163,13 @@
       </tr>
       <tr>
         <td colspan="{{ full_colspan }}">
-          <img class="lightcurve-plot-image" src="{{ observation.plot_image_path }}" alt="Image not found"
+          <img class="postage-stamp-image" src="{{ observation.postage_stamp_image_path }}" alt="Image not found"
             loading="lazy" />
         </td>
       </tr>
       <tr>
         <td colspan="{{ full_colspan }}">
-          <img class="postage-stamp-image" src="{{ observation.postage_stamp_image_path }}" alt="Image not found"
+          <img class="lightcurve-plot-image" src="{{ observation.plot_image_path }}" alt="Image not found"
             loading="lazy" />
         </td>
       </tr>
